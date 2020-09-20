@@ -15,7 +15,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@handshake-tools/platform/cli": ["libs/platform/cli/src/index.ts"],
+      "@handshake-tools/hello-world": ["libs/hello-world/src/index.ts"],
+      "@handshake-tools/core": ["libs/core/src/index.ts"],
+      "@handshake-tools/platform/vscode": ["libs/platform/vscode/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

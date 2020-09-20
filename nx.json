@@ -17,9 +17,33 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "platform-cli": {
+      "tags": []
+    },
+    "hello-world": {
+      "tags": []
+    },
+    "handshake-cli": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
+    "platform-vscode": {
+      "tags": []
+    },
+    "handshake-code-extension": {
+      "tags": []
+    }
+  }
 }

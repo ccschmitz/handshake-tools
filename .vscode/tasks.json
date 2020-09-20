@@ -1,0 +1,10 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "Extension Build",
+          "command": "nx",
+          "args": ["build", "--project=handshake-code-extension"]
+      }
+  ]
+}

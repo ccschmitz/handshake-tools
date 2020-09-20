@@ -1,7 +1,245 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "platform-cli": {
+      "root": "libs/platform/cli",
+      "sourceRoot": "libs/platform/cli/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/platform/cli/tsconfig.lib.json",
+              "libs/platform/cli/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/platform/cli/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/platform/cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hello-world": {
+      "root": "libs/hello-world",
+      "sourceRoot": "libs/hello-world/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/hello-world/tsconfig.lib.json",
+              "libs/hello-world/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/hello-world/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/hello-world/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "handshake-cli": {
+      "root": "apps/handshake-cli",
+      "sourceRoot": "apps/handshake-cli/src",
+      "projectType": "application",
+      "prefix": "handshake-cli",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/handshake-cli",
+            "main": "apps/handshake-cli/src/main.ts",
+            "tsConfig": "apps/handshake-cli/tsconfig.app.json",
+            "assets": [
+              "apps/handshake-cli/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/handshake-cli/src/environments/environment.ts",
+                  "with": "apps/handshake-cli/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "handshake-cli:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "apps/handshake-cli/tsconfig.app.json",
+              "apps/handshake-cli/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/handshake-cli/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/handshake-cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "platform-vscode": {
+      "root": "libs/platform/vscode",
+      "sourceRoot": "libs/platform/vscode/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/platform/vscode/tsconfig.lib.json",
+              "libs/platform/vscode/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/platform/vscode/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/platform/vscode/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "handshake-code-extension": {
+      "root": "apps/handshake-code-extension",
+      "sourceRoot": "apps/handshake-code-extension/src",
+      "projectType": "application",
+      "prefix": "handshake-code-extension",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/handshake-code-extension",
+            "main": "apps/handshake-code-extension/src/main.ts",
+            "tsConfig": "apps/handshake-code-extension/tsconfig.app.json",
+            "assets": [
+              "apps/handshake-code-extension/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/handshake-code-extension/src/environments/environment.ts",
+                  "with": "apps/handshake-code-extension/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "handshake-code-extension:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "apps/handshake-code-extension/tsconfig.app.json",
+              "apps/handshake-code-extension/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/handshake-code-extension/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/handshake-code-extension/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "handshake-cli"
 }

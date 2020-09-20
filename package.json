@@ -59,7 +59,7 @@
   "engines": {
 		"vscode": "^1.45.0"
 	},
-  "activationEvents": ["onView:handshake-explorer"],
+  "activationEvents": ["onStartupFinished"],
 	"main": "./dist/apps/handshake-code-extension/main.js",
 	"contributes": {
         "viewsContainers": {

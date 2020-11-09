@@ -2,13 +2,25 @@ import 'reflect-metadata';
 
 import { MetadataKeys } from './metadata-keys';
 
-export function Option(name: string, description: string) {
+interface OptionConfig {
+  flag: string;
+  alias?: string;
+  description: string;
+  required?: boolean;
+}
+
+export function Option(config: OptionConfig) {
     return (target: unknown, propertyKey: string | symbol, index: number) => {
-        Reflect.defineMetadata(MetadataKeys.Options, {
-            name,
-            description,
-            propertyKey,
-            index,
-        }, target.constructor);
+        const existingOptions = Reflect.getMetadata(MetadataKeys.Options, target.constructor) || [];
+        const [_, name] = /--(\w+)/.exec(config.flag) || [];
+
+        existingOptions.unshift({
+          required: false,
+          ...config,
+          name,
+          index,
+        });
+
+        Reflect.defineMetadata(MetadataKeys.Options, existingOptions, target.constructor);
     };
 }

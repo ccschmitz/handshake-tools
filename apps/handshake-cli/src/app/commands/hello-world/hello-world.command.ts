@@ -1,19 +1,21 @@
 import { HelloWorldService } from "@handshake-tools/hello-world";
-import { Command, Action, Option } from "@handshake-tools/platform/cli";
+import { Command, Option } from "@handshake-tools/platform/cli";
 
 @Command({
+    name: 'hello-world',
     description: "Performs Sanity Check",
     providers: [HelloWorldService],
 })
 export class HelloWorldCommand {
     constructor(
-      private service: HelloWorldService) {}
+      private service: HelloWorldService
+    ) {}
 
-    @Action('hello-world')
-    public run (
-        @Option('debug', 'Enable Debugging') debug: boolean
+    public async run (
+      @Option({ flag: '--debug', description: 'Enable debugging.'}) debug = false,
     ) {
-        this.service.message();
-        return Promise.resolve({});
+        if (debug) {
+          this.service.message();
+        }
     }
 }
